@@ -1,0 +1,892 @@
+{
+  "info": {
+    "_postman_id": "c15a001f-38ef-4e1b-b190-d02ac3027c9a",
+    "name": "APISequenceNew-Edit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43879081",
+    "_collection_link": "https://go.postman.co/collection/43879081-c15a001f-38ef-4e1b-b190-d02ac3027c9a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "login Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Status Code\r",
+              "pm.test(\"Status Code\", () => {\r",
+              "    pm.expect(\"Status Code is 200\");\r",
+              "})\r",
+              "//Response Time\r",
+              "pm.test(\"Response Time\", () =>{\r",
+              "    pm.expect(\"Response Time is less than 500ms\");\r",
+              "})\r",
+              "//Content Type\r",
+              "pm.test(\"Content Type\", () => {\r",
+              "pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+              "})\r",
+              "\r",
+              "/*const jsonData = pm.response.json();\r",
+              "const accessToken = jsonData.accessToken; \r",
+              "pm.collectionVariables.set(\"accessToken\", accessToken);*/\r",
+              "//const jsonData = pm.response.json();\r",
+              "//pm.environment.set(\"accessToken\", jsonData.accessToken);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic YXV0bzFAZ21haWwuY29tOmQ4MDQwMzI3NzU5ZGQ0NDE0NzNiMmY1ZTk4MmM3Njc4"
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "Origin",
+            "value": "http://169.61.105.110:9500"
+          },
+          {
+            "key": "Referer",
+            "value": "http://169.61.105.110:9500/"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "Email",
+              "value": "{{fp_email}}",
+              "type": "text",
+              "uuid": "d2ed1108-2c25-4681-9c93-62187a36da6a"
+            },
+            {
+              "key": "Password",
+              "value": "{{fp_password}}",
+              "type": "text",
+              "uuid": "d098d844-cdda-46ce-b7f5-6893232b4bf4"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{url_fpsequence}}/api/auth/login",
+          "host": [
+            "{{url_fpsequence}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        },
+        "description": "Generated from cURL: curl 'http://169.61.105.110:5000/api/auth/login' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Authorization: Basic YXV0bzFAZ21haWwuY29tOmQ4MDQwMzI3NzU5ZGQ0NDE0NzNiMmY1ZTk4MmM3Njc4' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryPiGxm0rxvqf12F3B' \\\r\n  -H 'Origin: http://169.61.105.110:9500' \\\r\n  -H 'Referer: http://169.61.105.110:9500/' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36' \\\r\n  --data-raw $'------WebKitFormBoundaryPiGxm0rxvqf12F3B\\r\\nContent-Disposition: form-data; name=\"Email\"\\r\\n\\r\\nauto1@gmail.com\\r\\n------WebKitFormBoundaryPiGxm0rxvqf12F3B\\r\\nContent-Disposition: form-data; name=\"Password\"\\r\\n\\r\\ndzee123\\r\\n------WebKitFormBoundaryPiGxm0rxvqf12F3B--\\r\\n' \\\r\n  --insecure"
+      },
+      "response": []
+    },
+    {
+      "name": "getCountycodeList-RetirementZip",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status Code\", ()=> {\r",
+              "    pm.response.to.have.status(200);\r",
+              "})\r",
+              "//Value Type\r",
+              "const jsonData = pm.response.json();\r",
+              "pm.test(\"Zipcode is String\", () => {\r",
+              "    pm.expect(jsonData.zipcode).to.be.a(\"string\")\r",
+              "})\r",
+              "pm.test(\"countycodeList\", () => {\r",
+              "pm.expect(jsonData.countycodeList).to.be.a(\"array\")\r",
+              "});\r",
+              "//const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Web service status is SUCCESS\", () => {\r",
+              "    pm.expect(jsonData.webServiceStatus).to.eql(\"SUCCESS\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Zipcode is a string\", () => {\r",
+              "    pm.expect(jsonData.zipcode).to.be.a(\"string\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"countycodeList is an array\", () => {\r",
+              "    pm.expect(jsonData.countycodeList).to.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Each county entry has required fields\", () => {\r",
+              "    jsonData.countycodeList.forEach((county) => {\r",
+              "        pm.expect(county).to.have.property(\"zipcode\");\r",
+              "        pm.expect(county).to.have.property(\"state\");\r",
+              "        pm.expect(county).to.have.property(\"stateCode\");\r",
+              "        pm.expect(county).to.have.property(\"city\");\r",
+              "        pm.expect(county).to.have.property(\"latitude\");\r",
+              "        pm.expect(county).to.have.property(\"longitude\");\r",
+              "        pm.expect(county).to.have.property(\"countyCode\");\r",
+              "        pm.expect(county).to.have.property(\"countyName\");\r",
+              "    });\r",
+              "});\r",
+              "//Test The Array property\r",
+              "pm.test(\"array property\", () =>{\r",
+              "    jsonData.countycodeList.forEach((county) => {\r",
+              "    pm.expect(county).to.have.property(\"zipcode\");\r",
+              "    pm.expect(county).to.have.property(\"state\");\r",
+              "    pm.expect(county).to.have.property(\"stateCode\");\r",
+              "    pm.expect(county).to.have.property(\"city\");\r",
+              "    pm.expect(county).to.have.property(\"latitude\");\r",
+              "    pm.expect(county).to.have.property(\"longitude\");\r",
+              "    pm.expect(county).to.have.property(\"countyCode\");\r",
+              "    pm.expect(county).to.have.property(\"countyName\");\r",
+              "    \r",
+              "});\r",
+              "});\r",
+              "//Validate inside Json fields\r",
+              "//https://www.liquid-technologies.com/online-json-to-schema-converter\r",
+              "pm.test(\"validate inside Json fields\", () => {\r",
+              "    pm.expect(jsonData.countycodeList[0].zipcode).to.be.a('string');\r",
+              "    //pm.expect(jsonData.countycodeList[1].state).to.be.a('string');\r",
+              "});\r",
+              "//Json Schema Validate\r",
+              "var schema={\r",
+              "  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+              "  \"type\": \"object\",\r",
+              "  \"properties\": {\r",
+              "    \"webServiceTransactionId\": {\r",
+              "      \"type\": \"string\"\r",
+              "    },\r",
+              "    \"webServiceStatus\": {\r",
+              "      \"type\": \"string\"\r",
+              "    },\r",
+              "    \"zipcode\": {\r",
+              "      \"type\": \"string\"\r",
+              "    },\r",
+              "    \"state\": {\r",
+              "      \"type\": \"null\"\r",
+              "    },\r",
+              "    \"countycodeList\": {\r",
+              "      \"type\": \"array\",\r",
+              "      \"items\": [\r",
+              "        {\r",
+              "          \"type\": \"object\",\r",
+              "          \"properties\": {\r",
+              "            \"zipcode\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"state\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"stateCode\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"city\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"latitude\": {\r",
+              "              \"type\": \"number\"\r",
+              "            },\r",
+              "            \"longitude\": {\r",
+              "              \"type\": \"number\"\r",
+              "            },\r",
+              "            \"countyCode\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"countyName\": {\r",
+              "              \"type\": \"string\"\r",
+              "            }\r",
+              "          },\r",
+              "          \"required\": [\r",
+              "            \"zipcode\",\r",
+              "            \"state\",\r",
+              "            \"stateCode\",\r",
+              "            \"city\",\r",
+              "            \"latitude\",\r",
+              "            \"longitude\",\r",
+              "            \"countyCode\",\r",
+              "            \"countyName\"\r",
+              "          ]\r",
+              "        },\r",
+              "        {\r",
+              "          \"type\": \"object\",\r",
+              "          \"properties\": {\r",
+              "            \"zipcode\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"state\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"stateCode\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"city\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"latitude\": {\r",
+              "              \"type\": \"number\"\r",
+              "            },\r",
+              "            \"longitude\": {\r",
+              "              \"type\": \"number\"\r",
+              "            },\r",
+              "            \"countyCode\": {\r",
+              "              \"type\": \"string\"\r",
+              "            },\r",
+              "            \"countyName\": {\r",
+              "              \"type\": \"string\"\r",
+              "            }\r",
+              "          },\r",
+              "          \"required\": [\r",
+              "            \"zipcode\",\r",
+              "            \"state\",\r",
+              "            \"stateCode\",\r",
+              "            \"city\",\r",
+              "            \"latitude\",\r",
+              "            \"longitude\",\r",
+              "            \"countyCode\",\r",
+              "            \"countyName\"\r",
+              "          ]\r",
+              "        }\r",
+              "      ]\r",
+              "    }\r",
+              "  },\r",
+              "  \"required\": [\r",
+              "    \"webServiceTransactionId\",\r",
+              "    \"webServiceStatus\",\r",
+              "    \"zipcode\",\r",
+              "    \"state\",\r",
+              "    \"countycodeList\"\r",
+              "  ]\r",
+              "}\r",
+              "pm.test(\"Response Schema\", () => {\r",
+              "pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+              "})\r",
+              "\r",
+              "\r",
+              "\r",
+              "\r",
+              "const res = pm.response.json();\r",
+              "\r",
+              "// capture state and stateCode from the first item in countycodeList\r",
+              "const state = res.countycodeList[0].state;\r",
+              "const stateCode = res.countycodeList[0].stateCode;\r",
+              "\r",
+              "// save as collection variables for the Edit sequence\r",
+              "pm.environment.set(\"edit_retstate\", state);\r",
+              "pm.environment.set(\"edit_retstateCode\", stateCode);\r",
+              "\r",
+              "console.log(\"Captured state:\", state);\r",
+              "console.log(\"Captured stateCode:\", stateCode);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA=="
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "External-Token",
+            "value": "true"
+          },
+          {
+            "key": "Origin",
+            "value": "http://169.61.105.110:9500"
+          },
+          {
+            "key": "Referer",
+            "value": "http://169.61.105.110:9500/"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"zipcode\": {{edit_retzipcode}}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_fpsupport}}/NewFinancialPlanner/api/v1/getCountycodeList",
+          "host": [
+            "{{url_fpsupport}}"
+          ],
+          "path": [
+            "NewFinancialPlanner",
+            "api",
+            "v1",
+            "getCountycodeList"
+          ]
+        },
+        "description": "Generated from cURL: curl 'http://169.61.105.110:8080/NewFinancialPlanner/api/v1/getCountycodeList' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Authorization: Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA==' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'External-Token: true' \\\r\n  -H 'Origin: http://169.61.105.110:9500' \\\r\n  -H 'Referer: http://169.61.105.110:9500/' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36' \\\r\n  --data-raw '{\"zipcode\":10001}' \\\r\n  --insecure"
+      },
+      "response": []
+    },
+    {
+      "name": "individualTotalExpensesR3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const response = pm.response.json();\r",
+              "const data = response.individualTotalExpenses || [];\r",
+              "\r",
+              "// Status Code\r",
+              "pm.test(\"Status Code is 200\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "// Response Time\r",
+              "pm.test(\"Response Time is less than 2500ms\", () => {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2500);\r",
+              "});\r",
+              "\r",
+              "// Content Type\r",
+              "pm.test(\"Content Type is application/json\", () => {\r",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+              "});\r",
+              "\r",
+              "// Response Body\r",
+              "pm.test(\"Individual Total Expense response is an object\", () => {\r",
+              "    pm.expect(response).to.be.an(\"object\");\r",
+              "});\r",
+              "\r",
+              "if (!data.length) {\r",
+              "    throw new Error(\"individualTotalExpenses not found in response\");\r",
+              "}\r",
+              "\r",
+              "// Get supplement plan\r",
+              "let supplementPlan = pm.variables.get(\"SupplimentPlan\");\r",
+              "\r",
+              "if (!supplementPlan) {\r",
+              "    supplementPlan = pm.environment.get(\"SupplimentPlan\");\r",
+              "}\r",
+              "\r",
+              "if (!supplementPlan) {\r",
+              "    throw new Error(\"SupplimentPlan variable is not set\");\r",
+              "}\r",
+              "\r",
+              "supplementPlan = String(supplementPlan).toLowerCase().trim();\r",
+              "\r",
+              "// Map plan to field\r",
+              "const planFieldMap = {\r",
+              "    plan_c: \"totalABCD\",\r",
+              "    plan_d: \"totalABD\",\r",
+              "    plan_f: \"totalABFD\",\r",
+              "    plan_g: \"totalABGD\",\r",
+              "    plan_n: \"totalABND\"\r",
+              "};\r",
+              "\r",
+              "const totalField = planFieldMap[supplementPlan];\r",
+              "\r",
+              "if (!totalField) {\r",
+              "    throw new Error(`Unsupported SupplimentPlan value: ${supplementPlan}`);\r",
+              "}\r",
+              "\r",
+              "// Expense year range\r",
+              "const fromYear = data[0].year;\r",
+              "const toYear = data[data.length - 1].year;\r",
+              "\r",
+              "// Build expenses array\r",
+              "const pv_expenses = data.map(item => ({\r",
+              "    year: item.year,\r",
+              "    expense: Math.round((item[totalField] || 0) + (item.partCOOP || 0))\r",
+              "}));\r",
+              "\r",
+              "// Save variables used by expensesPresentValue\r",
+              "pm.environment.set(\"pv_fromYear\", fromYear);\r",
+              "pm.environment.set(\"pv_toYear\", toYear);\r",
+              "pm.environment.set(\"pv_expenses\", JSON.stringify(pv_expenses));\r",
+              "\r",
+              "// Logs\r",
+              "console.log(\"SupplimentPlan =\", supplementPlan);\r",
+              "console.log(\"Using field =\", totalField);\r",
+              "console.log(\"Using OOP field = partCOOP\");\r",
+              "console.log(\"pv_fromYear =\", fromYear);\r",
+              "console.log(\"pv_toYear =\", toYear);\r",
+              "console.log(\"Generated pv_expenses =\", pv_expenses);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const birthDateRaw = pm.environment.get(\"fp_birthDate\");              // example: 09-1975\r",
+              "const retirementYearRaw = pm.environment.get(\"fp_retirementYear\");    // example: 2040\r",
+              "const lifeExpectancyRaw = pm.environment.get(\"edit_lifeExpectancy\");  // example: 91\r",
+              "\r",
+              "if (!birthDateRaw) {\r",
+              "    throw new Error(\"fp_birthDate is missing\");\r",
+              "}\r",
+              "\r",
+              "if (!retirementYearRaw) {\r",
+              "    throw new Error(\"fp_retirementYear is missing\");\r",
+              "}\r",
+              "\r",
+              "if (!lifeExpectancyRaw) {\r",
+              "    throw new Error(\"edit_lifeExpectancy is missing\");\r",
+              "}\r",
+              "\r",
+              "const birthParts = String(birthDateRaw).split(\"-\");\r",
+              "if (birthParts.length < 2) {\r",
+              "    throw new Error(`Invalid fp_birthDate format: ${birthDateRaw}`);\r",
+              "}\r",
+              "\r",
+              "const birthYear = parseInt(birthParts[1], 10);\r",
+              "const retirementYear = parseInt(retirementYearRaw, 10);\r",
+              "const lifeExpectancy = parseInt(lifeExpectancyRaw, 10);\r",
+              "\r",
+              "if (Number.isNaN(birthYear)) {\r",
+              "    throw new Error(`Invalid birth year: ${birthDateRaw}`);\r",
+              "}\r",
+              "\r",
+              "if (Number.isNaN(retirementYear)) {\r",
+              "    throw new Error(`Invalid fp_retirementYear: ${retirementYearRaw}`);\r",
+              "}\r",
+              "\r",
+              "if (Number.isNaN(lifeExpectancy)) {\r",
+              "    throw new Error(`Invalid edit_lifeExpectancy: ${lifeExpectancyRaw}`);\r",
+              "}\r",
+              "\r",
+              "// Start from retirement year\r",
+              "const startYear = retirementYear;\r",
+              "\r",
+              "// End at birth year + life expectancy\r",
+              "const endYear = birthYear + lifeExpectancy;\r",
+              "\r",
+              "if (endYear < startYear) {\r",
+              "    throw new Error(`Invalid year range. startYear=${startYear}, endYear=${endYear}`);\r",
+              "}\r",
+              "\r",
+              "let magiList = [];\r",
+              "\r",
+              "for (let year = startYear; year <= endYear; year++) {\r",
+              "    magiList.push({\r",
+              "        magiTier: 1,\r",
+              "        magiDollarAmount: null,\r",
+              "        taxFilingStatus: null,\r",
+              "        year: year\r",
+              "    });\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"editYearWiseMagi\", JSON.stringify(magiList));\r",
+              "\r",
+              "console.log(\"birthYear =\", birthYear);\r",
+              "console.log(\"retirementYear =\", retirementYear);\r",
+              "console.log(\"lifeExpectancy =\", lifeExpectancy);\r",
+              "console.log(\"startYear =\", startYear);\r",
+              "console.log(\"endYear =\", endYear);\r",
+              "console.log(\"editYearWiseMagi =\", pm.environment.get(\"editYearWiseMagi\"));\r",
+              "\r",
+              "\r",
+              "pm.environment.set(\"selectedPlan\", \"ABCD\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA=="
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "External-Token",
+            "value": "true"
+          },
+          {
+            "key": "Origin",
+            "value": "http://169.61.105.110:9500"
+          },
+          {
+            "key": "Referer",
+            "value": "http://169.61.105.110:9500/"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"stateName\": \"{{edit_retstate}}\",\r\n    \"retirementYear\": \"{{fp_retirementYear}}\",\r\n    \"healthGrade\": {{fp_healthGrade}},\r\n    \"birthDate\": \"{{fp_birthDate}}\",\r\n    \"singleVsMultipleMagi\": \"true\",\r\n    \"magiTierVsDollarAmount\": \"false\",\r\n    \"yearWiseMagiDetailList\": {{editYearWiseMagi}},\r\n    \"lifeExpectancy\": {{edit_lifeExpectancy}},\r\n    \"zipcode\": {{edit_retzipcode}},\r\n    \"planId\": null,\r\n    \"boughtPlanA\": false,\r\n    \"dental\": false,\r\n    \"dentalHealthGrade\": 0,\r\n    \"planType\": null,\r\n    \"reserveDaysUsed\": 0,\r\n    \"retirementState\": \"{{edit_retstate}}\",\r\n    \"tobacco\": false,\r\n    \"retirementZipcode\": {{edit_retzipcode}},\r\n    \"conciergeIncluded\": false,\r\n    \"conciergePremium\": 3600,\r\n    \"conciergeInflation\": 0.05,\r\n    \"conciergeYear\": 2025,\r\n    \"versionId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_fpsupport}}/NewFinancialPlanner/api/v1/individualTotalExpensesR3",
+          "host": [
+            "{{url_fpsupport}}"
+          ],
+          "path": [
+            "NewFinancialPlanner",
+            "api",
+            "v1",
+            "individualTotalExpensesR3"
+          ]
+        },
+        "description": "Generated from cURL: curl 'http://169.61.105.110:8080/NewFinancialPlanner/api/v1/individualTotalExpensesR3' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Authorization: Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA==' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'External-Token: true' \\\r\n  -H 'Origin: http://169.61.105.110:9500' \\\r\n  -H 'Referer: http://169.61.105.110:9500/' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36' \\\r\n  --data-raw '{\"stateName\":\"New York\",\"retirementYear\":\"09-2041\",\"healthGrade\":2,\"birthDate\":\"09-1975\",\"singleVsMultipleMagi\":\"true\",\"magiTierVsDollarAmount\":\"false\",\"yearWiseMagiDetailList\":[{\"year\":2040,\"magiTier\":1},{\"year\":2041,\"magiTier\":1},{\"year\":2042,\"magiTier\":1},{\"year\":2043,\"magiTier\":1},{\"year\":2044,\"magiTier\":1},{\"year\":2045,\"magiTier\":1},{\"year\":2046,\"magiTier\":1},{\"year\":2047,\"magiTier\":1},{\"year\":2048,\"magiTier\":1},{\"year\":2049,\"magiTier\":1},{\"year\":2050,\"magiTier\":1},{\"year\":2051,\"magiTier\":1},{\"year\":2052,\"magiTier\":1},{\"year\":2053,\"magiTier\":1},{\"year\":2054,\"magiTier\":1},{\"year\":2055,\"magiTier\":1},{\"year\":2056,\"magiTier\":1},{\"year\":2057,\"magiTier\":1},{\"year\":2058,\"magiTier\":1},{\"year\":2059,\"magiTier\":1},{\"year\":2060,\"magiTier\":1},{\"year\":2061,\"magiTier\":1},{\"year\":2062,\"magiTier\":1},{\"year\":2063,\"magiTier\":1},{\"year\":2064,\"magiTier\":1},{\"year\":2065,\"magiTier\":1},{\"year\":2066,\"magiTier\":1}],\"lifeExpectancy\":91,\"zipcode\":10001,\"planId\":null,\"boughtPlanA\":false,\"dental\":false,\"dentalHealthGrade\":0,\"planType\":null,\"reserveDaysUsed\":0,\"retirementState\":\"New York\",\"tobacco\":false,\"retirementZipcode\":10001,\"conciergeIncluded\":false,\"conciergePremium\":3600,\"conciergeInflation\":0.05,\"conciergeYear\":2025,\"versionId\":1}' \\\r\n  --insecure"
+      },
+      "response": []
+    },
+    {
+      "name": "expensesPresentValue",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Status Code\r",
+              "pm.test(\"Status Code\", () => {\r",
+              "    pm.expect(\"Status Code is 200\");\r",
+              "})\r",
+              "//Response Time\r",
+              "pm.test(\"Response Time\", () =>{\r",
+              "    pm.expect(\"Response Time is less than 500ms\");\r",
+              "})\r",
+              "//Content Type\r",
+              "pm.test(\"Content Type\", () => {\r",
+              "pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const fromYearRaw = pm.environment.get(\"pv_fromYear\");\r",
+              "\r",
+              "if (!fromYearRaw) {\r",
+              "    throw new Error(\"pv_fromYear is missing. Run R3 first.\");\r",
+              "}\r",
+              "\r",
+              "const fromYear = parseInt(fromYearRaw, 10);\r",
+              "const currentYear = new Date().getFullYear();\r",
+              "\r",
+              "if (Number.isNaN(fromYear)) {\r",
+              "    throw new Error(`Invalid pv_fromYear: ${fromYearRaw}`);\r",
+              "}\r",
+              "\r",
+              "let pvAsOnYear1;\r",
+              "\r",
+              "// Older instance\r",
+              "if (fromYear <= currentYear) {\r",
+              "    pvAsOnYear1 = currentYear;\r",
+              "} else {\r",
+              "    // New instance\r",
+              "    pvAsOnYear1 = fromYear - 1;\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"pvAsOnYear1\", pvAsOnYear1);\r",
+              "\r",
+              "console.log(\"pv_fromYear =\", fromYear);\r",
+              "console.log(\"currentYear =\", currentYear);\r",
+              "console.log(\"pvAsOnYear1 =\", pvAsOnYear1);\r",
+              "\r",
+              "const finalBody = pm.variables.replaceIn(pm.request.body.raw);\r",
+              "console.log(\"FINAL BODY =\", finalBody);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA=="
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "External-Token",
+            "value": "true"
+          },
+          {
+            "key": "Origin",
+            "value": "http://169.61.105.110:9500"
+          },
+          {
+            "key": "Referer",
+            "value": "http://169.61.105.110:9500/"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"fromYear\": {{pv_fromYear}},\r\n    \"toYear\": {{pv_toYear}},\r\n    \"presentValueYears\": {\r\n        \"pvAsOnYear1\": {{pvAsOnYear1}}\r\n    },\r\n    \"discount\": 6,\r\n    \"rateOfReturns\": {\r\n        \"rateOfReturn1\": {{rateOfReturn1}},\r\n        \"rateOfReturn2\": {{rateOfReturn2}},\r\n        \"rateOfReturn3\": {{rateOfReturn3}},\r\n        \"rateOfReturn4\": {{rateOfReturn4}}\r\n    },\r\n    \"expenses\": {{pv_expenses}}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_fpsupport}}/NewFinancialPlanner/api/v1/expensesPresentValue",
+          "host": [
+            "{{url_fpsupport}}"
+          ],
+          "path": [
+            "NewFinancialPlanner",
+            "api",
+            "v1",
+            "expensesPresentValue"
+          ]
+        },
+        "description": "Generated from cURL: curl 'http://169.61.105.110:8080/NewFinancialPlanner/api/v1/expensesPresentValue' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Authorization: Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA==' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'External-Token: true' \\\r\n  -H 'Origin: http://169.61.105.110:9500' \\\r\n  -H 'Referer: http://169.61.105.110:9500/' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36' \\\r\n  --data-raw '{\"fromYear\":2041,\"toYear\":2066,\"presentValueYears\":{\"pvAsOnYear1\":2040},\"discount\":6,\"rateOfReturns\":{\"rateOfReturn1\":2,\"rateOfReturn2\":4,\"rateOfReturn3\":6,\"rateOfReturn4\":8},\"expenses\":[{\"year\":2041,\"expense\":6880},{\"year\":2042,\"expense\":21582},{\"year\":2043,\"expense\":22574},{\"year\":2044,\"expense\":23616},{\"year\":2045,\"expense\":24709},{\"year\":2046,\"expense\":25860},{\"year\":2047,\"expense\":30715},{\"year\":2048,\"expense\":28036},{\"year\":2049,\"expense\":29195},{\"year\":2050,\"expense\":30405},{\"year\":2051,\"expense\":31670},{\"year\":2052,\"expense\":32989},{\"year\":2053,\"expense\":32769},{\"year\":2054,\"expense\":35804},{\"year\":2055,\"expense\":37305},{\"year\":2056,\"expense\":38873},{\"year\":2057,\"expense\":40509},{\"year\":2058,\"expense\":42220},{\"year\":2059,\"expense\":44006},{\"year\":2060,\"expense\":45871},{\"year\":2061,\"expense\":47818},{\"year\":2062,\"expense\":49854},{\"year\":2063,\"expense\":51980},{\"year\":2064,\"expense\":54202},{\"year\":2065,\"expense\":64592},{\"year\":2066,\"expense\":39300}]}' \\\r\n  --insecure"
+      },
+      "response": []
+    },
+    {
+      "name": "longTermCareR4",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Status Code\r",
+              "pm.test(\"Status Code\", () => {\r",
+              "    pm.expect(\"Status Code is 200\");\r",
+              "})\r",
+              "//Response Time\r",
+              "pm.test(\"Response Time\", () =>{\r",
+              "    pm.expect(\"Response Time is less than 500ms\");\r",
+              "})\r",
+              "//Content Type\r",
+              "pm.test(\"Content Type\", () => {\r",
+              "pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+              "})\r",
+              "//Response Body\r",
+              "const jsonData=pm.response.json();\r",
+              "pm.test(\"Long Term Care\", ()=> {\r",
+              "    pm.expect(jsonData).to.be.an(\"object\");\r",
+              "    pm.expect(jsonData.webServiceStatus).to.equal(\"SUCCESS\");\r",
+              "\r",
+              "})\r",
+              "//Validate the Json fields\r",
+              "const jsonlist=jsonData.futureAdultDayHealthCareExpenseList;\r",
+              "pm.test(\"Future Adult Day Health Care Expense List\", () => {\r",
+              "    pm.expect(jsonlist).to.be.an(\"array\");\r",
+              "    pm.expect(jsonlist[0]).to.have.property(\"year\");\r",
+              "    pm.expect(jsonlist[0]).to.have.property(\"expense\");\r",
+              "    })"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "Accept-Language",
+            "value": "en-US,en;q=0.9"
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA=="
+          },
+          {
+            "key": "Connection",
+            "value": "keep-alive"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "External-Token",
+            "value": "true"
+          },
+          {
+            "key": "Origin",
+            "value": "http://169.61.105.110:9500"
+          },
+          {
+            "key": "Referer",
+            "value": "http://169.61.105.110:9500/"
+          },
+          {
+            "key": "User-Agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"age\": 50,\r\n    \"alzheimersFlag\": false,\r\n    \"currentLifeStyleExpenses\": 1,\r\n    \"gender\": \"M\",\r\n    \"healthProfile\": 2,\r\n    \"heartStorkeFlag\": false,\r\n    \"lifeExpectancy\": {{edit_lifeExpectancy}},\r\n    \"numberOfAdultDayHealthCareLTCYears\": {{numberOfAdultDayHealthCareLTCYears}},\r\n    \"numberOfAssistedCareLTCYears\": 0,\r\n    \"numberOfHomeCareLTCYears\": {{numberOfHomeCareLTCYears}},\r\n    \"numberOfNursingCareLTCYears\": {{numberOfNursingCareLTCYears}},\r\n    \"tobaccoUsage\": false,\r\n    \"transactionTypeFlag\": false,\r\n    \"zipcode\": {{edit_retzipcode}},\r\n    \"pvAsOfYear\": {{pvAsOnYear1}},\r\n    \"location\": \"{{edit_retstate}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_fpsupport}}/NewFinancialPlanner/api/v1/longTermCareR4",
+          "host": [
+            "{{url_fpsupport}}"
+          ],
+          "path": [
+            "NewFinancialPlanner",
+            "api",
+            "v1",
+            "longTermCareR4"
+          ]
+        },
+        "description": "Generated from cURL: curl 'http://169.61.105.110:8080/NewFinancialPlanner/api/v1/longTermCareR4' \\\r\n  -H 'Accept: application/json, text/plain, */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Authorization: Basic RmluYW5jaWFsUGxhbm5lclNlcnZpY2VVc2VyOkZpbmFuY2lhbFBsYW5uZXJQQHNzdzByZA==' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'External-Token: true' \\\r\n  -H 'Origin: http://169.61.105.110:9500' \\\r\n  -H 'Referer: http://169.61.105.110:9500/' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36' \\\r\n  --data-raw '{\"age\":50,\"alzheimersFlag\":false,\"currentLifeStyleExpenses\":1,\"gender\":\"M\",\"healthProfile\":2,\"heartStorkeFlag\":false,\"lifeExpectancy\":91,\"numberOfAdultDayHealthCareLTCYears\":1,\"numberOfAssistedCareLTCYears\":0,\"numberOfHomeCareLTCYears\":1,\"numberOfNursingCareLTCYears\":1,\"tobaccoUsage\":false,\"transactionTypeFlag\":false,\"zipcode\":10001,\"pvAsOfYear\":2040,\"location\":\"New York\"}' \\\r\n  --insecure"
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url_fpsequence",
+      "value": "http://169.61.105.110:5000"
+    },
+    {
+      "key": "url_fpsupport",
+      "value": "http://169.61.105.110:8080"
+    },
+    {
+      "key": "url_fpauth",
+      "value": "http://169.61.105.110:9500"
+    }
+  ]
+}
