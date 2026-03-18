@@ -1,0 +1,24 @@
+name: Run Postman Collection
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  newman-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman collection
+        run: |
+          newman run "APISequencing-FP.postman_collection.json" \
+          -e "FP_envVariables.postman_environment.json" \
+          -r cli
